@@ -1,10 +1,10 @@
 # alpine-clang-vcpkg
 
-[Dockerfile](https://github.com/p120ph37/alpine-clang-vcpkg/blob/main/Dockerfile)
+[Dockerfile](https://github.com/aaronmeriwether/alpine-clang-vcpkg/blob/main/Dockerfile)
 
 Alpine Linux Docker image with clang/LLVM and vcpkg for building static C/C++ binaries targeting musl.
 
-## What's included in [`p120ph37/alpine-clang-vcpkg:latest`](https://hub.docker.com/r/p120ph37/alpine-clang-vcpkg)
+## What's included in [`ameriwether/alpine-clang-vcpkg:latest`](https://hub.docker.com/r/ameriwether/alpine-clang-vcpkg)
 
 - **Alpine <!-- alpine-version -->3.23.3<!-- /alpine-version -->** — musl <!-- musl-version -->1.2.5<!-- /musl-version --> libc base
 - **clang/LLVM <!-- clang-version -->21.1.2<!-- /clang-version -->** — set as system-default toolchain; LLVM tools override GCC/binutils system-wide (`cc`→`clang`, `ar`→`llvm-ar`, `ld`→`lld`, etc.); builds link against LLVM's **compiler-rt** and **libunwind** instead of `libgcc`; the `gcc` package has been overridden (compiler binaries removed; retained as a dependency-marker only)
@@ -126,7 +126,7 @@ Alpine Linux Docker image with clang/LLVM and vcpkg for building static C/C++ bi
 The image is automatically rebuilt when vcpkg is updated upstream.
 
 Because the entire dependency tree is compiled from source via vcpkg, this
-image is well suited for [link-time optimization (LTO)](https://github.com/p120ph37/alpine-clang-vcpkg/blob/main/LTO.md)
+image is well suited for [link-time optimization (LTO)](https://github.com/aaronmeriwether/alpine-clang-vcpkg/blob/main/LTO.md)
 across your project and all of its dependencies.
 
 ## Using in a Dockerfile
@@ -134,7 +134,7 @@ across your project and all of its dependencies.
 Build a CMake/vcpkg project and package it into a minimal runtime image:
 
 ```dockerfile
-FROM p120ph37/alpine-clang-vcpkg:latest AS builder
+FROM ameriwether/alpine-clang-vcpkg:latest AS builder
 
 # Optional: inject extra compiler/linker flags into all builds (including
 # vcpkg dependencies).  For example, enable full LTO and optimize for size:
@@ -295,5 +295,5 @@ Docker image with no base OS (as shown in the quick-start example above).
 Mount your source tree and work in a shell:
 
 ```bash
-docker run --rm -it -v $(pwd):/src p120ph37/alpine-clang-vcpkg:latest
+docker run --rm -it -v $(pwd):/src ameriwether/alpine-clang-vcpkg:latest
 ```
