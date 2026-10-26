@@ -4,7 +4,7 @@
 
 This repository defines a Docker image that provides a complete C/C++ build environment on Alpine Linux (musl libc) using a pure-LLVM/Clang toolchain with vcpkg for dependency management. The image targets production of optimized static binaries with full LTO support across `linux/amd64` and `linux/arm64`.
 
-Published to Docker Hub as `p120ph37/alpine-clang-vcpkg`.
+Published to Docker Hub as `ameriwether/alpine-clang-vcpkg`.
 
 ## Repository structure
 
